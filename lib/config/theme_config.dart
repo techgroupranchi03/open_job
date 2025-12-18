@@ -14,7 +14,7 @@ class ThemeConfig {
     brightness: Brightness.light,
     primaryColor: primaryBlue,
     scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: primaryBlue,
       secondary: lightBlue,
       surface: Colors.white,
@@ -25,14 +25,14 @@ class ThemeConfig {
       onSurface: textDark,
       onBackground: textDark,
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: primaryBlue,
       foregroundColor: Colors.white,
       elevation: 0,
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       selectedItemColor: primaryBlue,
       unselectedItemColor: backgroundGrey,
@@ -40,7 +40,7 @@ class ThemeConfig {
       elevation: 8,
       selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
     ),
-    drawerTheme: DrawerThemeData(
+    drawerTheme: const DrawerThemeData(
       backgroundColor: Colors.white,
       elevation: 16,
     ),
@@ -48,9 +48,12 @@ class ThemeConfig {
       color: Colors.white,
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     ),
-    textTheme: TextTheme(
+
+    */
+
+    textTheme: const TextTheme(
       displayLarge:
           TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: textDark),
       displayMedium:
@@ -67,7 +70,7 @@ class ThemeConfig {
         backgroundColor: primaryBlue,
         foregroundColor: Colors.white,
         elevation: 2,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
@@ -80,7 +83,7 @@ class ThemeConfig {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: primaryBlue, width: 2),
+        borderSide: const BorderSide(color: primaryBlue, width: 2),
       ),
     ),
   );
@@ -90,8 +93,8 @@ class ThemeConfig {
     useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: primaryBlue,
-    scaffoldBackgroundColor: Color(0xFF18191A),
-    colorScheme: ColorScheme.dark(
+    scaffoldBackgroundColor: const Color(0xFF18191A),
+    colorScheme: const ColorScheme.dark(
       primary: lightBlue,
       secondary: primaryBlue,
       surface: Color(0xFF242526),
@@ -102,14 +105,14 @@ class ThemeConfig {
       onSurface: Colors.white,
       onBackground: Colors.white,
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF242526),
       foregroundColor: Colors.white,
       elevation: 0,
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFF242526),
       selectedItemColor: lightBlue,
       unselectedItemColor: Color(0xFF8A8D91),
@@ -117,7 +120,7 @@ class ThemeConfig {
       elevation: 8,
       selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
     ),
-    drawerTheme: DrawerThemeData(
+    drawerTheme: const DrawerThemeData(
       backgroundColor: Color(0xFF242526),
       elevation: 16,
     ),
@@ -126,8 +129,9 @@ class ThemeConfig {
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    ),
-    textTheme: TextTheme(
+    )*/
+
+    textTheme: const TextTheme(
       displayLarge: TextStyle(
           fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
       displayMedium: TextStyle(
@@ -144,20 +148,20 @@ class ThemeConfig {
         backgroundColor: lightBlue,
         foregroundColor: Colors.white,
         elevation: 2,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: Color(0xFF3A3B3C),
+      fillColor: const Color(0xFF3A3B3C),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide.none,
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: lightBlue, width: 2),
+        borderSide: const BorderSide(color: lightBlue, width: 2),
       ),
     ),
   );
