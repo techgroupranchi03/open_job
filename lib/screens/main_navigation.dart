@@ -21,8 +21,8 @@ class _MainNavigationState extends State<MainNavigation> {
   ];
 
   final List<String> _titles = [
-    'Home',
-    'Learner',
+    'Jobs',
+    'Upskill',
     'Profile',
   ];
 
@@ -58,14 +58,14 @@ class _MainNavigationState extends State<MainNavigation> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.work_outline),
+            activeIcon: Icon(Icons.work),
+            label: 'Jobs',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school_outlined),
             activeIcon: Icon(Icons.school),
-            label: 'Learner',
+            label: 'Upskill',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
