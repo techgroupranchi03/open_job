@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ThemeConfig {
-  // Color Palette based on provided design
+  // Color Palette
   static const Color primaryBlue = Color(0xFF1877F2);
   static const Color lightBlue = Color(0xFF409CFF);
   static const Color backgroundLight = Color(0xFFE7E9ED);
   static const Color backgroundGrey = Color(0xFFB0B3B8);
   static const Color textDark = Color(0xFF242526);
 
-  // Light Theme
+  // -------------------- LIGHT THEME --------------------
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: primaryBlue,
     scaffoldBackgroundColor: Colors.white,
+
     colorScheme: const ColorScheme.light(
       primary: primaryBlue,
       secondary: lightBlue,
@@ -25,6 +26,7 @@ class ThemeConfig {
       onSurface: textDark,
       onBackground: textDark,
     ),
+
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryBlue,
       foregroundColor: Colors.white,
@@ -32,6 +34,7 @@ class ThemeConfig {
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.white),
     ),
+
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       selectedItemColor: primaryBlue,
@@ -40,18 +43,20 @@ class ThemeConfig {
       elevation: 8,
       selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
     ),
+
     drawerTheme: const DrawerThemeData(
       backgroundColor: Colors.white,
       elevation: 16,
     ),
+
     cardTheme: CardThemeData(
       color: Colors.white,
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
     ),
-
-    */
 
     textTheme: const TextTheme(
       displayLarge:
@@ -65,15 +70,19 @@ class ThemeConfig {
       bodyLarge: TextStyle(fontSize: 16, color: textDark),
       bodyMedium: TextStyle(fontSize: 14, color: textDark),
     ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryBlue,
         foregroundColor: Colors.white,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
     ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: backgroundLight,
@@ -88,12 +97,13 @@ class ThemeConfig {
     ),
   );
 
-  // Dark Theme
+  // -------------------- DARK THEME --------------------
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: primaryBlue,
     scaffoldBackgroundColor: const Color(0xFF18191A),
+
     colorScheme: const ColorScheme.dark(
       primary: lightBlue,
       secondary: primaryBlue,
@@ -105,6 +115,7 @@ class ThemeConfig {
       onSurface: Colors.white,
       onBackground: Colors.white,
     ),
+
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF242526),
       foregroundColor: Colors.white,
@@ -112,6 +123,7 @@ class ThemeConfig {
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.white),
     ),
+
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFF242526),
       selectedItemColor: lightBlue,
@@ -120,16 +132,20 @@ class ThemeConfig {
       elevation: 8,
       selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
     ),
+
     drawerTheme: const DrawerThemeData(
       backgroundColor: Color(0xFF242526),
       elevation: 16,
     ),
+
     cardTheme: CardThemeData(
-      color: Color(0xFF242526),
+      color: const Color(0xFF242526),
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    )*/
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+    ),
 
     textTheme: const TextTheme(
       displayLarge: TextStyle(
@@ -143,15 +159,19 @@ class ThemeConfig {
       bodyLarge: TextStyle(fontSize: 16, color: Colors.white),
       bodyMedium: TextStyle(fontSize: 14, color: Colors.white70),
     ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: lightBlue,
         foregroundColor: Colors.white,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
     ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: const Color(0xFF3A3B3C),

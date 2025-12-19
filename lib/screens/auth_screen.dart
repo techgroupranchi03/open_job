@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_job/screens/main_navigation.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -138,7 +139,6 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                             ),
                             const SizedBox(height: 14),
-
                             TextFormField(
                               controller: lastNameCtrl,
                               decoration: _inputDecoration(
@@ -147,7 +147,6 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                             ),
                             const SizedBox(height: 14),
-
                             TextFormField(
                               controller: phoneCtrl,
                               keyboardType: TextInputType.phone,
@@ -199,8 +198,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             height: 50,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color(0xFF1877F2),
+                                backgroundColor: const Color(0xFF1877F2),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14),
                                 ),
@@ -208,8 +206,22 @@ class _AuthScreenState extends State<AuthScreen> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   if (isLogin) {
+                                    debugPrint(emailCtrl.text);
+                                    debugPrint(passwordCtrl.text);
                                     debugPrint("LOGIN");
+
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const MainNavigation()),
+                                    );
                                   } else {
+                                    debugPrint(firstNameCtrl.text);
+                                    debugPrint(lastNameCtrl.text);
+                                    debugPrint(phoneCtrl.text);
+                                    debugPrint(emailCtrl.text);
+                                    debugPrint(passwordCtrl.text);
                                     debugPrint("REGISTER");
                                   }
                                 }
@@ -263,9 +275,7 @@ class _AuthScreenState extends State<AuthScreen> {
             text,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: selected
-                  ? const Color(0xFF1877F2)
-                  : Colors.grey,
+              color: selected ? const Color(0xFF1877F2) : Colors.grey,
             ),
           ),
         ),

@@ -156,6 +156,7 @@
 // }
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:open_job/screens/auth_screen.dart';
 import 'main_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -196,7 +197,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const MainNavigation()),
+        MaterialPageRoute(builder: (_) => const AuthScreen()),
       );
     });
   }
@@ -213,11 +214,8 @@ class _SplashScreenState extends State<SplashScreen>
       animation: _dotController,
       builder: (context, child) {
         double delay = index * 0.2;
-        double progress =
-            (_dotController.value - delay).clamp(0.0, 1.0);
-        double scale = (progress < 0.5)
-            ? progress * 2
-            : (1 - progress) * 2;
+        double progress = (_dotController.value - delay).clamp(0.0, 1.0);
+        double scale = (progress < 0.5) ? progress * 2 : (1 - progress) * 2;
 
         return Transform.scale(
           scale: scale,
