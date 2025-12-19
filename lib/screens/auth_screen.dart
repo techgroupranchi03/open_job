@@ -223,6 +223,38 @@ class _AuthScreenState extends State<AuthScreen> {
                                     debugPrint(emailCtrl.text);
                                     debugPrint(passwordCtrl.text);
                                     debugPrint("REGISTER");
+
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (_) => AlertDialog(
+                                        title: const Text(
+                                            "Successfully Registered"),
+                                        content: Text(
+                                          "${firstNameCtrl.text}, your account has been created.",
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .pop(); // close dialog
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      MainNavigation(),
+                                                ),
+                                              );
+                                            },
+                                            child: const Text(
+                                              "Go to Dashboard",
+                                              style: TextStyle(
+                                                  color: Colors.green),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   }
                                 }
                               },
