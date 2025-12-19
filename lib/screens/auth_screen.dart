@@ -229,6 +229,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       barrierDismissible: false,
                                       builder: (_) => AlertDialog(
                                         title: const Text(
+                                          
                                             "Successfully Registered"),
                                         content: Text(
                                           "${firstNameCtrl.text}, your account has been created.",
