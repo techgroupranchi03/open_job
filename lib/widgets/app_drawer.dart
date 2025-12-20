@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_job/screens/setting_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/theme_provider.dart';
 
@@ -155,7 +156,8 @@ class AppDrawer extends StatelessWidget {
             icon: Icons.settings_outlined,
             title: 'Settings',
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen()));
               // TODO: Navigate to settings
             },
           ),
