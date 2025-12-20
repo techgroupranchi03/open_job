@@ -157,6 +157,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:open_job/screens/auth_screen.dart';
+import 'package:open_job/utils/string_config.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -288,7 +289,7 @@ class _SplashScreenState extends State<SplashScreen>
 
                     // App Name
                     const Text(
-                      'OpenJob',
+                      StringConfig.appName,
                       style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
@@ -301,7 +302,7 @@ class _SplashScreenState extends State<SplashScreen>
 
                     // Tagline
                     Text(
-                      'Your Career, Unlocked.',
+                      StringConfig.tagline,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white.withOpacity(0.8),

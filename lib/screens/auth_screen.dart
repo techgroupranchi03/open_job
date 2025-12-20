@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:open_job/screens/main_navigation.dart';
+import 'package:open_job/utils/string_config.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -88,9 +89,9 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
 
               const SizedBox(height: 6),
-
+              //salogan
               const Text(
-                "Find your dream job & master new skills",
+                StringConfig.appSalogan,
                 style: TextStyle(color: Colors.grey),
               ),
 
