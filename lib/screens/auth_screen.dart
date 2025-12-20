@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:open_job/screens/main_navigation.dart';
 
@@ -210,12 +212,25 @@ class _AuthScreenState extends State<AuthScreen> {
                                     debugPrint(passwordCtrl.text);
                                     debugPrint("LOGIN");
 
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
+                                    if (emailCtrl.text.isNotEmpty &&
+                                        passwordCtrl.text.isNotEmpty) {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
                                           builder: (_) =>
-                                              const MainNavigation()),
-                                    );
+                                              const MainNavigation(),
+                                        ),
+                                      );
+                                    } else {
+                                      debugPrint(
+                                          "Email and password must not be empty");
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                "Email and password are required")),
+                                      );
+                                    }
                                   } else {
                                     debugPrint(firstNameCtrl.text);
                                     debugPrint(lastNameCtrl.text);
@@ -223,39 +238,48 @@ class _AuthScreenState extends State<AuthScreen> {
                                     debugPrint(emailCtrl.text);
                                     debugPrint(passwordCtrl.text);
                                     debugPrint("REGISTER");
-
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (_) => AlertDialog(
-                                        title: const Text(
-                                          
-                                            "Successfully Registered"),
-                                        content: Text(
-                                          "${firstNameCtrl.text}, your account has been created.",
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context)
-                                                  .pop(); // close dialog
-                                              Navigator.of(context)
-                                                  .pushReplacement(
-                                                MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      MainNavigation(),
-                                                ),
-                                              );
-                                            },
-                                            child: const Text(
-                                              "Go to Dashboard",
-                                              style: TextStyle(
-                                                  color: Colors.green),
-                                            ),
+                                    if (emailCtrl.text.isNotEmpty &&
+                                        passwordCtrl.text.isNotEmpty) {
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (_) => AlertDialog(
+                                          title: const Text(
+                                              "Successfully Registered"),
+                                          content: Text(
+                                            "${firstNameCtrl.text}, your account has been created.",
                                           ),
-                                        ],
-                                      ),
-                                    );
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context)
+                                                    .pop(); // close dialog
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                  MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        MainNavigation(),
+                                                  ),
+                                                );
+                                              },
+                                              child: const Text(
+                                                "Go to Dashboard",
+                                                style: TextStyle(
+                                                    color: Colors.green),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      debugPrint("All fields are required");
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                "All fields are required")),
+                                      );
+                                    }
                                   }
                                 }
                               },

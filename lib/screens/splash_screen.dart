@@ -157,7 +157,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:open_job/screens/auth_screen.dart';
-import 'main_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
