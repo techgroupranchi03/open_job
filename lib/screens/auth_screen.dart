@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:open_job/screens/main_navigation.dart';
@@ -81,7 +80,7 @@ class _AuthScreenState extends State<AuthScreen> {
               const SizedBox(height: 20),
 
               const Text(
-                "OpenJob",
+                StringConfig.appName,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -121,8 +120,8 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       child: Row(
                         children: [
-                          _tabButton("Sign In", true),
-                          _tabButton("Register", false),
+                          _tabButton(StringConfig.sign, true),
+                          _tabButton(StringConfig.register, false),
                         ],
                       ),
                     ),
@@ -137,7 +136,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             TextFormField(
                               controller: firstNameCtrl,
                               decoration: _inputDecoration(
-                                label: "First Name",
+                                label: 'First Name',
                                 icon: Icons.person,
                               ),
                             ),
@@ -145,7 +144,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             TextFormField(
                               controller: lastNameCtrl,
                               decoration: _inputDecoration(
-                                label: "Last Name",
+                                label: 'Last Name',
                                 icon: Icons.person_outline,
                               ),
                             ),
@@ -154,7 +153,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               controller: phoneCtrl,
                               keyboardType: TextInputType.phone,
                               decoration: _inputDecoration(
-                                label: "Phone",
+                                label: 'Phone',
                                 icon: Icons.phone,
                               ),
                             ),
@@ -165,7 +164,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             controller: emailCtrl,
                             keyboardType: TextInputType.emailAddress,
                             decoration: _inputDecoration(
-                              label: "Email",
+                              label: 'Email',
                               icon: Icons.email,
                             ),
                           ),
@@ -176,7 +175,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             controller: passwordCtrl,
                             obscureText: !showPassword,
                             decoration: _inputDecoration(
-                              label: "Password",
+                              label: 'Password',
                               icon: Icons.lock,
                               suffix: IconButton(
                                 icon: Icon(
@@ -211,7 +210,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   if (isLogin) {
                                     debugPrint(emailCtrl.text);
                                     debugPrint(passwordCtrl.text);
-                                    debugPrint("LOGIN");
+                                    debugPrint('LOGIN');
 
                                     if (emailCtrl.text.isNotEmpty &&
                                         passwordCtrl.text.isNotEmpty) {
@@ -224,12 +223,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                       );
                                     } else {
                                       debugPrint(
-                                          "Email and password must not be empty");
+                                          'Email and password must not be empty');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         const SnackBar(
                                             content: Text(
-                                                "Email and password are required")),
+                                                'Email and password are required')),
                                       );
                                     }
                                   } else {
@@ -238,7 +237,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     debugPrint(phoneCtrl.text);
                                     debugPrint(emailCtrl.text);
                                     debugPrint(passwordCtrl.text);
-                                    debugPrint("REGISTER");
+                                    debugPrint('REGISTER');
                                     if (emailCtrl.text.isNotEmpty &&
                                         passwordCtrl.text.isNotEmpty) {
                                       showDialog(
@@ -246,9 +245,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                         barrierDismissible: false,
                                         builder: (_) => AlertDialog(
                                           title: const Text(
-                                              "Successfully Registered"),
+                                              'Successfully Registered'),
                                           content: Text(
-                                            "${firstNameCtrl.text}, your account has been created.",
+                                            '${firstNameCtrl.text}, your account has been created.',
                                           ),
                                           actions: [
                                             TextButton(
@@ -259,12 +258,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                                     .pushReplacement(
                                                   MaterialPageRoute(
                                                     builder: (_) =>
-                                                        MainNavigation(),
+                                                        const MainNavigation(),
                                                   ),
                                                 );
                                               },
                                               child: const Text(
-                                                "Go to Dashboard",
+                                                'Go to Dashboard',
                                                 style: TextStyle(
                                                     color: Colors.green),
                                               ),
@@ -273,12 +272,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                         ),
                                       );
                                     } else {
-                                      debugPrint("All fields are required");
+                                      debugPrint('All fields are required');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         const SnackBar(
                                             content: Text(
-                                                "All fields are required")),
+                                                'All fields are required')),
                                       );
                                     }
                                   }
@@ -288,7 +287,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    isLogin ? "Continue" : "Create Account",
+                                    isLogin ? 'Continue' : 'Create Account',
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
