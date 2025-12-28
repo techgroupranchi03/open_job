@@ -44,7 +44,7 @@ class ThemeConfig {
       backgroundColor: Colors.white,
       elevation: 16,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.white,
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -121,7 +121,7 @@ class ThemeConfig {
       backgroundColor: Color(0xFF242526),
       elevation: 16,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Color(0xFF242526),
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

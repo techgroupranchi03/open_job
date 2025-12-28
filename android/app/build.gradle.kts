@@ -9,7 +9,8 @@ android {
     namespace = "com.example.open_job"
     compileSdk = 36
     // ndkVersion = flutter.ndkVersion
-    ndkVersion = "27.0.12077973"
+    // Using a known-good installed NDK version to avoid the missing `source.properties` error
+    ndkVersion = "25.2.9519653"
 
 
     compileOptions {
