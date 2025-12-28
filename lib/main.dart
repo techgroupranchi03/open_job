@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             themeMode:
                 themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
 
-            // Initial Route
+            // Initial Routekjhghk
             home: SplashScreen(),
 
             // System UI Overlay Style

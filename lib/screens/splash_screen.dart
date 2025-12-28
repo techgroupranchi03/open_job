@@ -81,7 +81,6 @@ class _SplashScreenState extends State<SplashScreen>
                         width: 150,
                         height: 150,
                         decoration: BoxDecoration(
-                          color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
@@ -91,10 +90,22 @@ class _SplashScreenState extends State<SplashScreen>
                             ),
                           ],
                         ),
-                        child: Icon(
-                          Icons.work_outline_rounded,
-                          size: 80,
-                          color: Color(0xFF1877F2),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.asset(
+                            'assets/icons/app_icon.png',
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: Colors.white,
+                                child: Icon(
+                                  Icons.work,
+                                  size: 80,
+                                  color: Color(0xFF1877F2),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),

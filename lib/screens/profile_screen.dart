@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'skill_bits_list_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -25,15 +26,15 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 Text(
-                  'John Doe',
+                  'Nitish Kumar',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'john.doe@email.com',
+                  'nitishkumar@gmail.com',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 12),
                 ElevatedButton.icon(
                   onPressed: () {
                     // TODO: Edit profile
@@ -49,27 +50,27 @@ class ProfileScreen extends StatelessWidget {
         SizedBox(height: 20),
 
         // Statistics
-        Row(
-          children: [
-            Expanded(
-              child: _buildStatCard(
-                context,
-                title: '15',
-                subtitle: 'Applied Jobs',
-                icon: Icons.work_outline,
-              ),
-            ),
-            SizedBox(width: 12),
-            Expanded(
-              child: _buildStatCard(
-                context,
-                title: '3',
-                subtitle: 'Saved Jobs',
-                icon: Icons.bookmark_outline,
-              ),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: [
+        //     Expanded(
+        //       child: _buildStatCard(
+        //         context,
+        //         title: '15',
+        //         subtitle: 'Applied Jobs',
+        //         icon: Icons.work_outline,
+        //       ),
+        //     ),
+        //     SizedBox(width: 12),
+        //     Expanded(
+        //       child: _buildStatCard(
+        //         context,
+        //         title: '3',
+        //         subtitle: 'Saved Jobs',
+        //         icon: Icons.bookmark_outline,
+        //       ),
+        //     ),
+        //   ],
+        // ),
 
         SizedBox(height: 20),
 
@@ -127,6 +128,20 @@ class ProfileScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         SizedBox(height: 12),
+        _buildSettingTile(
+          context,
+          icon: Icons.video_camera_front_outlined,
+          title: 'Skill Bit',
+          subtitle: 'Showcase your skills',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SkillBitsListScreen()),
+            );
+          },
+        ),
+
+        // single video handled in Video Introduction screen
 
         _buildSettingTile(
           context,
