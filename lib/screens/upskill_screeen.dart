@@ -1,7 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class UpskillScreeen extends StatelessWidget {
+class UpskillScreeen extends StatefulWidget {
   const UpskillScreeen({super.key});
+
+  @override
+  State<UpskillScreeen> createState() => _UpskillScreeenState();
+}
+
+class _UpskillScreeenState extends State<UpskillScreeen> {
+  bool isSearching = false;
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -11,39 +20,72 @@ class UpskillScreeen extends StatelessWidget {
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         backgroundColor: theme.colorScheme.surface,
-        title: const Text(
-          'Upskill ',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-        ),
+        elevation: 0,
         centerTitle: false,
+        title: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 250),
+          child: isSearching
+              ? Container(
+                  height: 40,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: TextField(
+                    controller: searchController,
+                    autofocus: true,
+                    onChanged: (value) {
+                      if (kDebugMode) {
+                        print('Search value: $value');
+                      }
+                    },
+                    decoration: const InputDecoration(
+                      hintText: 'Search courses...',
+                      border: InputBorder.none,
+                      icon: Icon(Icons.search, color: Colors.grey),
+                    ),
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                )
+              : const Text(
+                  'Upskill',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search, color: Colors.black),
-            onPressed: () {},
-          ),
-          /*
-          const Padding(
-            padding: EdgeInsets.only(right: 12),
-            child: CircleAvatar(
-              radius: 18,
-              backgroundImage: NetworkImage(
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuCKtID0hchK3KkLVPndXcc4Zta4Vpmk6p1wG33oxHOuYFc95xdhSZWYVCSm9P3e91-BMOIlJMCKJZSo6_iTg2WY7m5MwctT1xCIhQPTbvjn9CctvVENGsljBz-S9lHvh1w6BV5hhbTpL_bF7ybvce0eKNR8nQ9ENmldx9daQorqlxV1_tSTIHFichU7GQTlSASGJR5d9aU4WoejgKrXWQoz9v6tAd34jYu2GcnLdcxJlyIpxxCYrrdxiRun9s_a8_XTD01unMDsfA',
-              ),
+            icon: Icon(
+              isSearching ? Icons.close : Icons.search,
+              color: Colors.black,
             ),
-          )
-          */
+            onPressed: () {
+              if (kDebugMode) {
+                print('isSearching: $isSearching');
+              }
+              setState(() {
+                if (isSearching) {
+                  searchController.clear();
+                }
+                isSearching = !isSearching;
+              });
+            },
+          ),
         ],
       ),
 
+      // ⬇️ Your existing body stays unchanged
       body: ListView(
         padding: const EdgeInsets.only(bottom: 24),
         children: [
-          _sectionHeader(
-            title: "Trending Courses",
-            action: "See All",
-          ),
-
-          /// Trending Courses (Horizontal)
+          _sectionHeader(title: "Trending Courses", action: "See All"),
           SizedBox(
             height: 270,
             child: ListView.separated(
@@ -56,21 +98,14 @@ class UpskillScreeen extends StatelessWidget {
               itemCount: 3,
             ),
           ),
-
           const SizedBox(height: 16),
-
           _sectionHeader(title: "Continue Learning"),
-
-          /// Continue Learning Card
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: ContinueLearningCard(),
           ),
-
           const SizedBox(height: 24),
-
           _sectionHeader(title: "Explore"),
-
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Column(
@@ -114,10 +149,7 @@ class UpskillScreeen extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           if (action != null)
             Text(
@@ -126,7 +158,7 @@ class UpskillScreeen extends StatelessWidget {
                 color: Colors.blue,
                 fontWeight: FontWeight.w600,
               ),
-            )
+            ),
         ],
       ),
     );
