@@ -25,7 +25,12 @@ flutter doctor
 
 # Analyze code
 flutter analyze
+
+# release apk file
+flutter build apk --release
 ```
+
+
 
 ---
 

@@ -37,7 +37,7 @@ class _UpskillScreeenState extends State<UpskillScreeen> {
                     autofocus: true,
                     onChanged: (value) {
                       if (kDebugMode) {
-                        print('Search value: $value');
+                        print('\x1B[32mGreen: search value  = $value\x1B[0m');
                       }
                     },
                     decoration: const InputDecoration(
@@ -68,7 +68,7 @@ class _UpskillScreeenState extends State<UpskillScreeen> {
             ),
             onPressed: () {
               if (kDebugMode) {
-                print('isSearching: $isSearching');
+                print('\x1B[32misSearching: $isSearching\x1B[0m');
               }
               setState(() {
                 if (isSearching) {
