@@ -8,6 +8,36 @@ class LearnerScreen extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.all(16),
       children: [
+        SafeArea(
+          bottom: false,
+          child: Container(
+            height: 60,
+            child: Row(
+
+              
+
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text( 
+                  'Learn',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+
+                IconButton(
+                  icon: const Icon(Icons.person_outline, color: Colors.black),
+                  onPressed: () {
+                    debugPrint("Profile clicked");
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.help_outline, color: Colors.black),
+                  onPressed: () => debugPrint("Help clicked"),
+                ),
+              ],
+            ),
+          ),
+        ),
+
         // Header
         Card(
           child: Padding(

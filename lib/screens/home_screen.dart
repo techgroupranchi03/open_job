@@ -1,13 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:open_job/widgets/app_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(16),
-      children: [
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Open Job'),
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_outlined),
+            onPressed: () {
+              // TODO: Navigate to notifications
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // TODO: Open search
+            },
+          ),
+        ],
+      ),
+      drawer: const AppDrawer(),
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: [
         // Welcome Card
         Card(
           child: Padding(
@@ -101,6 +122,7 @@ class HomeScreen extends StatelessWidget {
           logo: Icons.groups,
         ),
       ],
+        ),
     );
   }
 

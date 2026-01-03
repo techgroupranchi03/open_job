@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:open_job/screens/open_job_home_screen.dart';
+import 'package:open_job/screens/upskill_screeen.dart';
 import 'home_screen.dart';
 import 'learner_screen.dart';
 import 'profile_screen.dart';
@@ -15,8 +17,8 @@ class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    HomeScreen(),
-    LearnerScreen(),
+    OpenJobHomeScreen(),
+    UpskillScreeen(),
     ProfileScreen(),
   ];
 
@@ -29,6 +31,9 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
+      /*
       appBar: AppBar(
         title: Text(_titles[_currentIndex]),
         elevation: 0,
@@ -47,7 +52,9 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
         ],
       ),
-      drawer: AppDrawer(),
+
+      `*/
+      drawer: const AppDrawer(),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
