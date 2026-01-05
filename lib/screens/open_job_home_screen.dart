@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:open_job/screens/upload_resume.dart';
 import 'package:open_job/widgets/app_drawer.dart';
 
 class OpenJobHomeScreen extends StatelessWidget {
@@ -23,16 +25,15 @@ class OpenJobHomeScreen extends StatelessWidget {
             backgroundColor: theme.colorScheme.surface.withOpacity(0.95),
             elevation: 1,
             automaticallyImplyLeading: false,
-            toolbarHeight: 160,
+            toolbarHeight: 75,
             flexibleSpace: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     _topBar(),
-                    const SizedBox(height: 12),
-                    _searchBar(),
                   ],
                 ),
               ),
@@ -42,8 +43,9 @@ class OpenJobHomeScreen extends StatelessWidget {
           /// CONTENT
           SliverList(
             delegate: SliverChildListDelegate([
+              const SizedBox(height: 12),
+              _searchBar(),
               const SizedBox(height: 20),
-
               // Discover Section
               _sectionHeader("Discover", action: "See all"),
               SizedBox(
@@ -151,8 +153,10 @@ class OpenJobHomeScreen extends StatelessWidget {
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Good Morning,", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                Text("Alex Morgan", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Good Morning,",
+                    style: TextStyle(fontSize: 12, color: Colors.grey)),
+                Text("Alex Morgan",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
           ],
@@ -277,11 +281,15 @@ class DiscoverCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text("Trending", style: TextStyle(fontSize: 10, color: Colors.white70)),
+            Text("Trending",
+                style: TextStyle(fontSize: 10, color: Colors.white70)),
             Text("Tech Hiring",
                 style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
-            Text("120+ new roles", style: TextStyle(color: Colors.white70, fontSize: 12)),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18)),
+            Text("120+ new roles",
+                style: TextStyle(color: Colors.white70, fontSize: 12)),
           ],
         ),
       ),
@@ -327,10 +335,12 @@ class JobCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                    Text(title,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 4),
                     Text("$company • $location",
-                        style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 12)),
                   ],
                 ),
               ),
@@ -357,9 +367,28 @@ class JobCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Posted $posted", style: const TextStyle(fontSize: 12, color: Colors.grey)),
+              Text("Posted $posted",
+                  style: const TextStyle(fontSize: 12, color: Colors.grey)),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+
+                  if(kDebugMode){
+
+                      print('\x1B[33mApplyBtn\x1B[0m');
+                  }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ApplyJobScreen()),
+                    );
+
+/*
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Apply button pressed')),
+                  );
+*/
+                  
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
@@ -375,4 +404,3 @@ class JobCard extends StatelessWidget {
     );
   }
 }
-          
