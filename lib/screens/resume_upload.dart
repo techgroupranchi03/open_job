@@ -59,10 +59,10 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
     }
   }
 
-  // ---------- Submit ----------
+  //submit resume
   void _submitResume() {
     _showSnackBar("Resume submitted successfully");
-    // TODO: API Upload
+    
   }
 
   void _showSnackBar(String message) {
