@@ -1,7 +1,10 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class UploadResumeScreen  extends StatelessWidget {
+class UploadResumeScreen extends StatefulWidget {
   final String company;
   final String title;
   final String location;
@@ -9,7 +12,7 @@ class UploadResumeScreen  extends StatelessWidget {
   final String posted;
   final String? salary;
 
-  const UploadResumeScreen ({
+  const UploadResumeScreen({
     super.key,
     required this.company,
     required this.title,
@@ -20,52 +23,86 @@ class UploadResumeScreen  extends StatelessWidget {
   });
 
   @override
+  State<UploadResumeScreen> createState() => _UploadResumeScreenState();
+}
+
+class _UploadResumeScreenState extends State<UploadResumeScreen> {
+  File? _selectedFile;
+
+  // ---------- Pick Resume ----------
+  Future<void> _pickResume() async {
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf', 'doc', 'docx'],
+      );
+
+      if (result == null) return;
+
+      final file = File(result.files.single.path!);
+      final fileSize = await file.length();
+
+      if (fileSize > 5 * 1024 * 1024) {
+        _showSnackBar("File size must be under 5MB");
+        return;
+      }
+
+      setState(() {
+        _selectedFile = file;
+      });
+
+      if (kDebugMode) {
+        print("Selected file: ${file.path}");
+      }
+    } catch (e) {
+      _showSnackBar("Failed to pick file");
+    }
+  }
+
+  // ---------- Submit ----------
+  void _submitResume() {
+    _showSnackBar("Resume submitted successfully");
+    // TODO: API Upload
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
+  // ---------- UI ----------
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    if (kDebugMode) {
-      print('\x1B[33mUploadResumeScreen Opened\x1B[0m');
-      print('\x1B[33mTitle: $title\x1B[0m');
-      print('\x1B[33mCompany: $company\x1B[0m');
-      print('\x1B[33mLocation: $location\x1B[0m');
-      print('\x1B[33mTags: ${tags.join(', ')}\x1B[0m');
-      print('\x1B[33mPosted: $posted\x1B[0m');
-      if (salary != null) {
-        print('\x1B[33mSalary: $salary\x1B[0m');
-      }
-    }
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: theme.colorScheme.surface,
-        centerTitle: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color:theme.textTheme.bodyLarge?.color),
+          icon: Icon(Icons.arrow_back_ios_new,
+              color: theme.textTheme.bodyLarge?.color),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           "Create Profile",
-          style: TextStyle(fontWeight: FontWeight.w600,color: Theme.of(context).textTheme.bodyLarge?.color),
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: theme.textTheme.bodyLarge?.color,
+          ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              if (kDebugMode) {
-                print('\x1B[33mSkip Upload Pressed\x1B[0m');
-              }
-            },
-            child: const Text(
-              "Skip",
-              style: TextStyle(color: Colors.grey),
-            ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 8),
+            child: Text("Skip", style: TextStyle(color: Colors.grey)),
           ),
         ],
       ),
       body: Column(
         children: [
-          /// Progress Bar
+          /// Progress
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -86,33 +123,17 @@ class UploadResumeScreen  extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: theme.brightness == Brightness.dark
-                      ? [
-                          Colors.blue.withOpacity(0.1),
-                          Colors.transparent,
-                        ]
-                      : [
-                          Colors.blue.withOpacity(0.12),
-                          Colors.blue.withOpacity(0.05),
-                        ],
-                ),
-                color: theme.brightness == Brightness.dark
-                    ? const Color(0xFF242526)
-                    : Colors.white,
+                color: theme.cardColor,
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 20,
                     offset: const Offset(0, 4),
                     color: Colors.blue.withOpacity(0.1),
-                  )
+                  ),
                 ],
               ),
               child: Column(
                 children: [
-
                   // Icon
                   Stack(
                     clipBehavior: Clip.none,
@@ -124,14 +145,8 @@ class UploadResumeScreen  extends StatelessWidget {
                           shape: BoxShape.circle,
                           gradient: LinearGradient(
                             colors: theme.brightness == Brightness.dark
-                                ? const [
-                                    Color(0xFF2A2B2E),
-                                    Color(0xFF1E1F20)
-                                  ]
-                                : const [
-                                    Colors.white,
-                                    Color(0xFFE7E9ED)
-                                  ],
+                                ? const [Color(0xFF2A2B2E), Color(0xFF1E1F20)]
+                                : const [Colors.white, Color(0xFFE7E9ED)],
                           ),
                           boxShadow: const [
                             BoxShadow(
@@ -207,7 +222,7 @@ class UploadResumeScreen  extends StatelessWidget {
 
           const Spacer(),
 
-          /// Upload Button
+          /// Upload + Submit
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -221,27 +236,40 @@ class UploadResumeScreen  extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      elevation: 8,
-                      shadowColor: Colors.blue.withOpacity(0.4),
                     ),
-                    onPressed: () {
-                      // TODO: Implement file picker
-                      if (kDebugMode) {
-                        print('\x1B[33mUpload Resume Button Pressed\x1B[0m');
-                      }
-                    },
+                    onPressed: _pickResume,
                     icon: const Icon(Icons.upload_file),
-                    label: const Text(
-                      "Upload Resume",
-                      style: TextStyle(fontSize: 16),
-                    ),
+                    label: const Text("Upload Resume"),
                   ),
                 ),
-                const SizedBox(height: 12),
-                const Text(
-                  "Max file size: 5MB",
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
+
+                if (_selectedFile != null) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    "Selected: ${_selectedFile!.path.split('/').last}",
+                    style:
+                        const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      onPressed: _submitResume,
+                      child: const Text("Submit"),
+                    ),
+                  ),
+                ],
+
+                const SizedBox(height: 8),
+                const Text("Max file size: 5MB",
+                    style: TextStyle(fontSize: 12, color: Colors.grey)),
               ],
             ),
           ),
@@ -251,10 +279,9 @@ class UploadResumeScreen  extends StatelessWidget {
   }
 }
 
-/// Progress Widget
+/// Progress Bar
 class _Progress extends StatelessWidget {
   final bool active;
-
   const _Progress({this.active = false});
 
   @override
@@ -272,7 +299,7 @@ class _Progress extends StatelessWidget {
   }
 }
 
-// File Type Chip
+/// File Type Chip
 class _FileType extends StatelessWidget {
   final String label;
   final IconData icon;
@@ -286,19 +313,14 @@ class _FileType extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey.shade300),
-        color: Theme.of(context).cardColor,
       ),
       child: Row(
         children: [
           Icon(icon, size: 16, color: Colors.blue),
           const SizedBox(width: 6),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Text(label,
+              style:
+                  const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
         ],
       ),
     );
