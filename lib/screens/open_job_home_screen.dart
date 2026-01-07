@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:open_job/screens/upload_resume.dart';
+import 'package:open_job/screens/resume_upload.dart';
+
+
 import 'package:open_job/widgets/app_drawer.dart';
 
 class OpenJobHomeScreen extends StatelessWidget {
@@ -297,9 +299,7 @@ class DiscoverCard extends StatelessWidget {
   }
 }
 
-/// --------------------
-/// Job Card
-/// --------------------
+// Job Card
 class JobCard extends StatelessWidget {
   final String title;
   final String company;
@@ -371,15 +371,22 @@ class JobCard extends StatelessWidget {
                   style: const TextStyle(fontSize: 12, color: Colors.grey)),
               ElevatedButton(
                 onPressed: () {
-
-                  if(kDebugMode){
-
-                      print('\x1B[33mApplyBtn\x1B[0m');
+                  if (kDebugMode) {
+                    print('\x1B[33mApplyBtn\x1B[0m');
                   }
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const ApplyJobScreen()),
-                    );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UploadResumeScreen(
+                        title: title,
+                        company: company,
+                        location: location,
+                        tags: tags,
+                        posted: posted,
+                        salary: salary,
+                      ),
+                    ),
+                  );
 
 /*
 
@@ -387,7 +394,6 @@ class JobCard extends StatelessWidget {
                     const SnackBar(content: Text('Apply button pressed')),
                   );
 */
-                  
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
