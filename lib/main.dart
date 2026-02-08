@@ -1,10 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:open_job/providers/theme_provider.dart';
+import 'package:open_job/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'config/theme_config.dart';
-import 'providers/theme_provider.dart';
-import 'screens/splash_screen.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
