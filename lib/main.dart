@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                 themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
 
             // Initial Route
-            home: SplashScreen(),
+            home: const SplashScreen(),
 
             // System UI Overlay Style
             builder: (context, child) {
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                       ? Brightness.light
                       : Brightness.dark,
                   systemNavigationBarColor: themeProvider.isDarkMode
-                      ? Color(0xFF242526)
+                      ? const Color(0xFF242526)
                       : Colors.white,
                   systemNavigationBarIconBrightness: themeProvider.isDarkMode
                       ? Brightness.light
